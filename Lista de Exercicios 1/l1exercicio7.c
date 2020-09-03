@@ -2,9 +2,9 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <time.h>
 
 int joga_dado(void);
-
 
 int main(void)
 {
@@ -15,5 +15,7 @@ int main(void)
 
 int joga_dado(void)
 {
-    return rand() % 6;
+    srand(time(NULL));
+
+    return 1 + rand() % 6;
 }
