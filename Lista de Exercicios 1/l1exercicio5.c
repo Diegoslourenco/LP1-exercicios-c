@@ -2,28 +2,28 @@
 
 # include <stdio.h>
 
-int verifica_menor_dois(int, int);
-int verifica_maior(int, int, int);
+float verificaMenorDois(float, float);
+float verificaMaior(float, float, float);
 
 int main(void)
 {
-    int numero1, numero2, numero3;
+    float numero1, numero2, numero3;
 
     // Recebendo os números
     printf("Digite o primeiro numero: ");
-    scanf("%i", &numero1);
+    scanf("%f", &numero1);
     printf("Digite o segundo numero: ");
-    scanf("%i", &numero2);
+    scanf("%f", &numero2);
     printf("Digite o terceiro numero: ");
-    scanf("%i", &numero3);
+    scanf("%f", &numero3);
 
-    printf("Maior valor: %i", verifica_maior(numero1, numero2, numero3));
+    printf("Maior valor: %f", verificaMaior(numero1, numero2, numero3));
 
-    return;
+    return 0;
 }
 
 // Recebe dois números e retorna o menor deles // vem do exercicio4
-int verifica_menor_dois(int numero1, int numero2)
+float verificaMenorDois(float numero1, float numero2)
 {
     if (numero1 <= numero2)
     {
@@ -35,13 +35,14 @@ int verifica_menor_dois(int numero1, int numero2)
     }
 }
 
-int verifica_maior(int numero1, int numero2, int numero3)
+// Recebe 3 números e retorna o maior deles
+float verificaMaior(float numero1, float numero2, float numero3)
 {
-    if (verifica_menor_dois(numero1, numero2) != numero1 && verifica_menor_dois(numero1, numero3) != numero1)
+    if (verificaMenorDois(numero1, numero2) != numero1 && verificaMenorDois(numero1, numero3) != numero1)
     {
         return numero1;
     }
-    else if (verifica_menor_dois(numero2, numero3) != numero2)
+    else if (verificaMenorDois(numero2, numero3) != numero2)
     {
         return numero2;
     }

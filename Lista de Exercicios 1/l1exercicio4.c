@@ -2,24 +2,24 @@
 
 # include <stdio.h>
 
-int verifica_menor_dois(int, int);
+float verificaMenorDois(float, float);
 
 int main(void)
 {
-    int numero1, numero2;
+    float numero1, numero2;
 
     // Recebendo os números
     printf("Digite o primeiro numero: ");
-    scanf("%i", &numero1);
+    scanf("%f", &numero1);
     printf("Digite o segundo numero: ");
-    scanf("%i", &numero2);
+    scanf("%f", &numero2);
 
-    printf("Menor valor: %i", verifica_menor_dois(numero1, numero2));
+    printf("Menor valor: %f", verificaMenorDois(numero1, numero2));
 
-    return;
+    return 0;
 }
 
-int verifica_menor_dois(int numero1, int numero2)
+float verificaMenorDois(float numero1, float numero2)
 {
     if (numero1 <= numero2)
     {

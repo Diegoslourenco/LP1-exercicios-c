@@ -14,16 +14,20 @@ int main(void)
     printf("Digite a temperatura: ");
     scanf("%i", &temperatura);
 
-    switch (entrada)
-    {
-        case 1:
-        printf("%i", (9 * temperatura / 5) + 32);
-        break;
-    
-        case 2:
-        printf("%i", 5 * (temperatura - 32) / 9);
-        break;
-    }
+    printf("%i", converteTemperatura(entrada));
 
     return;
+}
+
+int converteTemperatura(temperatura)
+{
+    switch (temperatura)
+    {
+        case 1:
+        return (9 * temperatura / 5) + 32;
+        
+    
+        case 2:
+        return (5 * (temperatura - 32) / 9);
+    }
 }

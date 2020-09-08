@@ -8,14 +8,13 @@ int joga_dado(void);
 
 int main(void)
 {
+    srand(time(NULL));
     printf("%i", joga_dado());
 
-    return;
+    return 0;
 }
 
 int joga_dado(void)
 {
-    srand(time(NULL));
-
     return 1 + rand() % 6;
 }

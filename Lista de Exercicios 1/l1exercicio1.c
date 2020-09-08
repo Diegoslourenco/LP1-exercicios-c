@@ -2,7 +2,7 @@
 
 # include <stdio.h>
 
-int verifica_positivo(int);
+int verificaPositivo(float);
 
 int main(void)
 {
@@ -12,7 +12,7 @@ int main(void)
     printf("Digite um valor: ");
     scanf("%i", &valor);
 
-    if (verifica_positivo(valor) == 1)
+    if (verificaPositivo(valor) == 1)
     {
         printf("Positivo");
     }
@@ -20,10 +20,10 @@ int main(void)
     {
         printf("Nao positivo");
     }
-    return;
+    return 0;
 }
 
-int verifica_positivo(int valor)
+int verificaPositivo(float valor)
 {
     if (valor > 0)
     {

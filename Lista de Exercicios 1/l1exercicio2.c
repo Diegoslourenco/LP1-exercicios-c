@@ -2,17 +2,17 @@
 
 # include <stdio.h>
 
-int verifica_nulo(int);
+int verificaNulo(float);
 
 int main(void)
 {
-    int valor;
+    float valor;
 
     // Recebendo valor do usuario
     printf("Digite um valor: ");
-    scanf("%i", &valor);
+    scanf("%f", &valor);
 
-    if (verifica_nulo(valor) == 1)
+    if (verificaNulo(valor) == 1)
     {
         printf("Nulo");
     }
@@ -21,10 +21,10 @@ int main(void)
         printf("Nao nulo");
     }
 
-    return;
+    return 0;
 }
 
-int verifica_nulo(int valor)
+int verificaNulo(float valor)
 {
     if (valor == 0)
     {

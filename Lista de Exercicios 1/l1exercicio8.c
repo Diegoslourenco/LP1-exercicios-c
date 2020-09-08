@@ -2,15 +2,19 @@
 // A probabilidade deu certo? Ou seja, a porcentagem dos números foi parecida?
 
 # include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
 
 int joga_dado(void);
-int calcula_porcentagem(int, int);
+float calculaPorcentagem(int, int);
 
 int main(void)
 {
     int i, valor;
     int lado1 = 0, lado2 = 0, lado3 = 0, lado4 = 0, lado5 = 0, lado6 = 0;
     int jogadas = 1000000;
+
+    srand(time(NULL));
 
     for (i = 0; i < jogadas; i++)
     {
@@ -42,24 +46,20 @@ int main(void)
         }
     }
 
+    printf("1: %.2f%\n2: %.2f%\n3: %.2f%\n4: %.2f%\n5: %.2f%\n6: %.2f%\n",
+            calculaPorcentagem(lado1, jogadas), calculaPorcentagem(lado2, jogadas),
+            calculaPorcentagem(lado3,jogadas), calculaPorcentagem(lado4, jogadas),
+            calculaPorcentagem(lado5, jogadas), calculaPorcentagem(lado6, jogadas));
 
-
-    printf("1: %i%\n2: %i%\n3: %i%\n4: %i%\n5: %i%\n6: %i%\n",
-            calcula_porcentagem(lado1, jogadas), calcula_porcentagem(lado2, jogadas),
-            calcula_porcentagem(lado3,jogadas), calcula_porcentagem(lado4, jogadas),
-            calcula_porcentagem(lado5, jogadas), calcula_porcentagem(lado6, jogadas));
-
-    return;
+    return 0;
 }
 
 int joga_dado(void)
 {
-    srand(time(NULL));
-
-    return 1 + rand() % 6;
+    return 1 + (rand() % 6);
 }
 
-int calcula_porcentagem(int numero, int total)
+float calculaPorcentagem(int numero, int total)
 {
-    return ((numero / total) * 100);
+    return ((float) numero / total) * 100;
 }
