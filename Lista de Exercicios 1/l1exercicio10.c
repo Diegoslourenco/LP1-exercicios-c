@@ -6,8 +6,8 @@
 # include <stdio.h>
 # include <math.h>
 
-float calcula_media_duas(float, float);
-float calcula_media_tres(float, float, float);
+float calculaMediaDuas(float, float);
+float calculaMediaTres(float, float, float);
 float verificaMenorTres(float, float, float);
 float verificaMenorDois(float, float);
 float verificaMaior(float, float, float);
@@ -24,24 +24,24 @@ int main(void)
     printf("Digite a nota 3: ");
     scanf("%f", &nota3);
 
-    printf("Media 3 notas: %.2f\n", calcula_media_tres(nota1, nota2, nota3));
+    printf("Media 3 notas: %.2f\n", calculaMediaTres(nota1, nota2, nota3));
 
-    printf("Media 2 notas: %.2f\n", calcula_media_duas(verificaMaior(nota1, nota2, nota3), 
+    printf("Media 2 notas: %.2f\n", calculaMediaDuas(verificaMaior(nota1, nota2, nota3), 
                                                     verificaIntermediario(nota1, nota2, nota3)));
 
     printf("Maior nota: %.2f\n", verificaMaior(nota1, nota2, nota3));
 
     printf("Menor nota: %.2f", verificaMenorTres(nota1, nota2, nota3));
 
-    return;
+    return 0;
 }
 
-float calcula_media_duas(float nota1, float nota2)
+float calculaMediaDuas(float nota1, float nota2)
 {
     return (nota1 + nota2) / 2;
 }
 
-float calcula_media_tres(float nota1, float nota2, float nota3)
+float calculaMediaTres(float nota1, float nota2, float nota3)
 {
     return (nota1 + nota2 + nota3) / 3;
 }

@@ -36,8 +36,7 @@ int main(void)
     delta = calculaDelta(a, b, c);
 
     // Calcula e imprime raízes
-    calculaRaizes(delta, a, b);
-   
+    return calculaRaizes(delta, a, b);  
 }
 
 // Calcula e retorna o valor de delta
