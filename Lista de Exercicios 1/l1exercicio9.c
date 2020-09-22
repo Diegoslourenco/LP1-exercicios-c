@@ -5,11 +5,12 @@
 
 # include <stdio.h>
 
-int converteTemperatura(int, int);
+float converteTemperatura(int, float);
 
 int main(void)
 {
-    int entrada, temperatura;
+    int entrada;
+    float temperatura;
 
     printf("Digite para converter,\n1 de Celsius para Farenheit ou 2 de Farenheit para Celsius: ");
     scanf("%i", &entrada);
@@ -20,21 +21,20 @@ int main(void)
     }
 
     printf("Digite a temperatura: ");
-    scanf("%i", &temperatura);
+    scanf("%f", &temperatura);
 
-    printf("%i", converteTemperatura(entrada, temperatura));
+    printf("%.2f", converteTemperatura(entrada, temperatura));
 
     return 0;
 }
 
-int converteTemperatura(int entrada, int temperatura)
+float converteTemperatura(int entrada, float temperatura)
 {
     switch (entrada)
     {
         case 1:
         return (9 * temperatura / 5) + 32;
-        
-    
+          
         case 2:
         return (5 * (temperatura - 32) / 9);
     }
