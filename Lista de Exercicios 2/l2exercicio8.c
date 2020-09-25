@@ -1,5 +1,5 @@
 /* 8. Leia um vetor A de 6 elementos contendo o gabarito da Mega-Sena.
-O sorteio consiste na extração de úm6 neros diferentes, no universo de 01 a 60.
+O sorteio consiste na extração de 6 numeros diferentes, no universo de 01 a 60.
  
 A seguir, ler um vetor B de 10 elementos contendo uma aposta. 
 Escrever quantos pontos fez o apostador, e se ele fez a sena (6 acertos),
@@ -7,34 +7,57 @@ a quina (5 acertos) ou a quadra (4 acertos).
 */
 
 # include <stdio.h>
-# include <stdlib.h>
-# include <time.h>
 # define GABARITO 6
 # define APOSTA 10
 
 int main(void)
 {
-    int i, j;
+    int i = 0, j;
     int acertos = 0;
     int gabarito[GABARITO], aposta[APOSTA];
 
-    // Iniciando
-    srand(time(NULL));
-
     // Recebendo o gabarito da Mega-Sena variando de 01 a 60
-    for (i = 0; i < GABARITO; i++)
+    printf("Digite os valores do gabarito de 01 a 60\n");
+    
+    while (i < GABARITO)
     {
-        gabarito[i] = 1 + (rand() % 60);
+       printf("Digite o valor %i: ", i+1);
+       scanf("%i", &gabarito[i]);
+
+       for (j = 0; j < i; j++)
+       {
+           if (gabarito[i] == gabarito[j] || gabarito[i] < 1 || gabarito[i] > 60)
+           {
+               i--;
+               break;
+           }
+       }
+
+       i++;
     }
 
-    // Definindo a aposta
-    printf("Aposta de 10 numeros\nDigite valores de 01 a 60!\n");
-    for (i = 0; i < APOSTA; i++)
+    // Definindo a aposta de 10 numeros
+    printf("\nAposta de 10 numeros\nDigite valores de 01 a 60!\n");
+    i = 0;
+
+    while (i < APOSTA)
     {
-        printf("Digite o valor %i: ", i + 1);
-        scanf("%i", &aposta[i]);
+       printf("Digite o valor %i: ", i+1);
+       scanf("%i", &aposta[i]);
+
+       for (j = 0; j < i; j++)
+       {
+           if (aposta[i] == aposta[j] || aposta[i] < 1 || aposta[i] > 60)
+           {
+               i--;
+               break;
+           }
+       }
+
+       i++;
     }
 
+    // Verificando numero de acertos
     for (i = 0; i < GABARITO; i++)
     {
         for (j = 0; j < APOSTA; j++)
@@ -47,6 +70,7 @@ int main(void)
         }
     }
 
+    // Imprimindo numero de acertos
     if (acertos == 6)
     {
         printf("Voce acertou a Sena!");
@@ -62,7 +86,7 @@ int main(void)
     else
     {
         printf("Voce teve %i acertos! Tente novamente!", acertos);
-    }  
+    }
 
     return 0;
 }

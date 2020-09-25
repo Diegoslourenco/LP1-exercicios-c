@@ -17,9 +17,8 @@ int main(void)
     // Verificando se o valor e menor que o maximo e maior que zero
     if (tamanho > MAX || tamanho <= 0)
     {
-        printf("O minimo valor e 1 e maximo de elementos e 100!");
+        printf("O minimo valor deve 1 e maximo de elementos deve 100!");
         return 1;
-
     }
 
     // Definindo tamanho do vetor
