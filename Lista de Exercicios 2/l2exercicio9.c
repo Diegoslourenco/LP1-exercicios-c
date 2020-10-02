@@ -27,12 +27,12 @@ int main(void)
     {
         if (vetorA[i] % 2 == 0)
         {
-            vetorA2[j] = vetorA[i];
+            vetorA2[k] = vetorA[i];
             k++;
         }
         else
         {
-            vetorA1[k] = vetorA[i];
+            vetorA1[j] = vetorA[i];
             j++;
         }  
     }
