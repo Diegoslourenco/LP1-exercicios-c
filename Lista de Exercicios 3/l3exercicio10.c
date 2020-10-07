@@ -4,29 +4,27 @@
 # include <stdio.h>
 # include <string.h>
 
-typedef char * string;
-
-void permutacaoLetras(string, int);
-void trocaCaracter(string*, int, int);
+void permutacaoLetras(char*, int);
+void trocaCaracter(char*, int, int);
 
 int main(void)
 {
     int numero = 3;
-    string letrasAlfabeto = {"ABCDEFGHIJKLMNOPQRSTUVXZWYK"};
-    string letras[3];
+    int inicio = 0;
+    char letrasAlfabeto[26] = {"ABCDEFGHIJKLMNOPQRSTUWVXYZ"};
+    char letras[numero];
 
     for (int i = 0; i < numero; i++)
     {
         letras[i] = letrasAlfabeto[i];
     }
 
-
-    permutacaoLetras(letras, numero);
+    permutacaoLetras(letras, inicio);
 
     return 0;
 }
 
-void permutacaoLetras(string letras, int numero)
+void permutacaoLetras(char* letras, int numero)
 {
     int comprimentoLetras = strlen(letras);
 
@@ -39,17 +37,21 @@ void permutacaoLetras(string letras, int numero)
     {
         for (int i = numero; i < comprimentoLetras; i++)
         {
+            // troca os caracteres de lugar
             trocaCaracter(letras, numero, i);
+
+            // chama a funcao
             permutacaoLetras(letras, numero + 1);
+
+            // troca de volta
             trocaCaracter(letras, i, numero);
         }
     }
-    
-    return;
 
+    return;
 }
 
-void trocaCaracter(string* letras, int primeiro, int segundo)
+void trocaCaracter(char* letras, int primeiro, int segundo)
 {
     char temp;
     temp = letras[primeiro];

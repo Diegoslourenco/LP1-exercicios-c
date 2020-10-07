@@ -2,16 +2,21 @@
 //Escreva uma função recursiva que inverta ordem dos elementos presentes no vetor.
 
 # include <stdio.h>
-# define TAMANHO 4
+# define TAMANHO 100
 
 void inverteVetor(float*, int, int);
 
 int main(void)
 {
-    float vetor[TAMANHO] = { 1, 2, 3, 4};
+    float vetor[TAMANHO];
     int indexLastElement = TAMANHO - 1;
     int indexFirstElement = 0;
     int i;
+
+    for (i = 0; i < TAMANHO - 1; i++)
+    {
+        vetor[i] = i + 1;
+    }
 
     inverteVetor(vetor, indexLastElement, indexFirstElement);
 

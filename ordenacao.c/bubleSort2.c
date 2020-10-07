@@ -8,7 +8,7 @@ int main(void)
 
     for (int i = TAM - 1; i >= 1 ; i--)
     {
-        for (int j = i-1; j >= 0; j--)
+        for (int j = i - 1; j >= 0; j--)
         {
             if (v[i] < v[j])
             {
@@ -17,6 +17,11 @@ int main(void)
                 v[i] = temp;
             }
         }
+    }
+
+    for (int i = 0; i < TAM - 1; i++)
+    {
+        printf("%i", v[i]);
     }
 
     return 0;
