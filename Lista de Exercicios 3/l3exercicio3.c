@@ -1,37 +1,48 @@
-// 3. Faça uma função recursiva que permita somar os elementos de um vetor de inteiros de 10 posições.
+//3. Crie um programa em C que receba um vetor de números reais com 100 elementos.
+//Escreva uma função recursiva que inverta ordem dos elementos presentes no vetor.
 
 # include <stdio.h>
-# define TAMANHO 10
+# define TAMANHO 100
 
-int somaVetor(int*, int);
+void inverteVetor(float*, int, int);
 
 int main(void)
 {
-    int vetor[TAMANHO] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    float vetor[TAMANHO];
     int indexLastElement = TAMANHO - 1;
-    int soma = 0;
+    int indexFirstElement = 0;
+    int i;
 
-    soma = somaVetor(vetor, indexLastElement);
+    for (i = 0; i < TAMANHO; i++)
+    {
+        vetor[i] = i + 1;
+    }
 
-    printf("%i", soma);
+    inverteVetor(vetor, indexLastElement, indexFirstElement);
+
+    for (i = 0; i < TAMANHO; i++)
+    {
+        printf("Item %i do vetor: %.2f\n", i+1, vetor[i]);
+    }
 
     return 0;
 }
 
-int somaVetor(int vetor[], int index)
+void inverteVetor(float* vetor, int indexLast, int indexFirst)
 {
-    int soma = 0;
+    int temp = 0;
 
-    if (index == 0) // base da resursao
+    if (indexLast <= indexFirst) // base da recursao
     {
-        soma = vetor[index];
-        return soma;
+        return;
     }
     else
     {
-        soma += vetor[index];
-        soma += somaVetor(vetor, index - 1);
+        temp = vetor[indexFirst];
+        vetor[indexFirst] = vetor[indexLast];
+        vetor[indexLast] = temp;
+        inverteVetor(vetor, indexLast-1, indexFirst+1);
     }
 
-    return soma; 
+    return;
 }

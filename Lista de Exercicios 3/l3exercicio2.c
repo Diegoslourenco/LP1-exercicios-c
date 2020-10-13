@@ -1,35 +1,33 @@
-//2. Faça uma função recursiva que permita inverter um número inteiro N. Ex: 123 – 321.
+// 2. Faça uma função recursiva que permita somar os elementos de um vetor de inteiros de 10 posições.
 
 # include <stdio.h>
+# define TAMANHO 10
 
-int inverteNumero(int, int);
+int somaVetor(int*, int);
 
 int main(void)
 {
+    int vetor[TAMANHO] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int indexLastElement = TAMANHO - 1;
+    int soma = 0;
 
-    int numero = 123;
-    int inversor = 0;
-    int numeroInvertido;
+    soma = somaVetor(vetor, indexLastElement);
 
-    numeroInvertido = inverteNumero(numero, inversor);
-
-    printf("Numero invertido: %i", numeroInvertido);
+    printf("%i", soma);
 
     return 0;
-
 }
 
-int inverteNumero(int numero, int inversor)
+int somaVetor(int* vetor, int index)
 {
-    if (numero < 10) // base da recursao
+    int soma = 0;
+
+    if (index == 0) // base da resursao
     {
-        return numero + inversor;
+        return vetor[index];
     }
     else
     {
-        inversor = (inversor * 10) + ((numero % 10) * 10);
-        return inverteNumero(numero / 10, inversor);
+        return vetor[index] + somaVetor(vetor, index - 1);
     }
-
-    return 0;
 }

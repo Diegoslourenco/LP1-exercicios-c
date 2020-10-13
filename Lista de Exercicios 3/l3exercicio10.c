@@ -1,62 +1,47 @@
-// 10. Escreva uma função recursiva que dado um número n, gere todas as possíveis combinações com
-// as n primeiras letras do alfabeto. Ex.: n = 3. Resposta: ABC, ACB, BAC, BCA, CAB, CBA.
+// 10. Escreva uma função recursiva que gere todas as possíveis combinações para um jogo da MegaSena
+// com 6 dezenas
 
 # include <stdio.h>
-# include <string.h>
+# define SENA 6
+# define DEZENAS 60
 
-void permutacaoLetras(char*, int);
-void trocaCaracter(char*, int, int);
+int geraCombinacoes(int*, int, int, int, int);
 
 int main(void)
 {
-    int numero = 3;
-    int inicio = 0;
-    char letrasAlfabeto[26] = {"ABCDEFGHIJKLMNOPQRSTUWVXYZ"};
-    char letras[numero];
+    int vetor[SENA];
+    int totalNumeros = DEZENAS;
+    int numerosUmJogo = SENA;
+    int inicio = 1;
+    int posicao = 1;
+    int possibilidades = 0;
 
-    for (int i = 0; i < numero; i++)
-    {
-        letras[i] = letrasAlfabeto[i];
-    }
+    possibilidades = geraCombinacoes(vetor, inicio, totalNumeros, posicao, numerosUmJogo);
 
-    permutacaoLetras(letras, inicio);
+    printf("%i", possibilidades);
 
     return 0;
 }
 
-void permutacaoLetras(char* letras, int numero)
+// gera todas as combinacoes de DEZENAS(60) elementos, SENA(6) numeros por vez
+int geraCombinacoes(int* vetor, int inicio, int totalNumeros, int posicao, int numerosUmJogo)
 {
-    int comprimentoLetras = strlen(letras);
+    int possibilidades = 0;
 
-    if (numero == comprimentoLetras) // base da recursao
+    // se a posicao atual for maior que o numeros de um jogo, soma possibilidades
+    if (posicao > numerosUmJogo) // base da recursao
     {
-        printf("%s\n", letras);
-        return;
+        return 1;
     }
     else
     {
-        for (int i = numero; i < comprimentoLetras; i++)
+        // Para cada posicao, testar todas as possibilidades restantes, inicio atual ao totalNumeros
+        for (int i = inicio; i <= totalNumeros; i++)
         {
-            // troca os caracteres de lugar
-            trocaCaracter(letras, numero, i);
-
-            // chama a funcao
-            permutacaoLetras(letras, numero + 1);
-
-            // troca de volta
-            trocaCaracter(letras, i, numero);
+            vetor[posicao] = i;
+            possibilidades += geraCombinacoes(vetor, i + 1, totalNumeros, posicao + 1, numerosUmJogo);
         }
     }
 
-    return;
-}
-
-void trocaCaracter(char* letras, int primeiro, int segundo)
-{
-    char temp;
-    temp = letras[primeiro];
-    letras[primeiro] = letras[segundo];
-    letras[segundo] = temp;
-
-    return;
+    return possibilidades;
 }

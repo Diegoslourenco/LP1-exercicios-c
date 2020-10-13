@@ -1,39 +1,35 @@
-/*1. Construa uma função recursiva que receba um vetor e o seu tamanho e retorne a média aritmética
-dos elementos do vetor. */
+//1. Faça uma função recursiva que permita inverter um número inteiro N. Ex: 123 – 321.
 
 # include <stdio.h>
-# define TAMANHO 5
 
-float calculaMedia(float*, int, int);
+int inverteNumero(int, int);
 
 int main(void)
 {
-    float vetor[TAMANHO] = { 1, 2, 3, 4, 5};
 
-    int indexLastElement = 4;
-    float media;
+    int numero = 123456789;
+    int inversor = 0;
+    int numeroInvertido;
 
-    media = calculaMedia(vetor, TAMANHO, indexLastElement);
+    numeroInvertido = inverteNumero(numero, inversor);
 
-    printf("Media dos valores do vetor: %.2f", media);
+    printf("Numero invertido: %i", numeroInvertido);
 
     return 0;
+
 }
 
-float calculaMedia(float vetor[], int tamanho, int index)
+int inverteNumero(int numero, int inversor)
 {
-    float media;
-
-    if(index == 0)
+    if (numero < 10) // base da recursao
     {
-        media = vetor[0]/ tamanho;
-        return media;
+        return numero + inversor;
     }
     else
     {
-        media = vetor[index] / tamanho;
-        media += calculaMedia(vetor, tamanho, index - 1);
+        inversor = (inversor * 10) + ((numero % 10) * 10);
+        return inverteNumero(numero / 10, inversor);
     }
-    
-    return media;
- }
+
+    return 0;
+}

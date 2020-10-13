@@ -1,48 +1,31 @@
-//4. Crie um programa em C que receba um vetor de números reais com 100 elementos.
-//Escreva uma função recursiva que inverta ordem dos elementos presentes no vetor.
+// 4. O máximo divisor comum dos inteiros x e y é o maior inteiro que é divisível por x e y.
+// Escreva uma função recursiva mdc em C, que retorna o máximo divisor comum de x e y.
+// O mdc de x e y é definido como segue: se y é igual a 0, então mdc(x,y) é x; caso contrário, 
+// mdc(x,y) é mdc (y, x%y), onde % é o operador resto.
 
 # include <stdio.h>
-# define TAMANHO 100
 
-void inverteVetor(float*, int, int);
+int maximoDivisorComum(int, int);
 
 int main(void)
 {
-    float vetor[TAMANHO];
-    int indexLastElement = TAMANHO - 1;
-    int indexFirstElement = 0;
-    int i;
+    int numero1 = 20;
+    int numero2 = 12;
+    int maximo;
 
-    for (i = 0; i < TAMANHO - 1; i++)
-    {
-        vetor[i] = i + 1;
-    }
-
-    inverteVetor(vetor, indexLastElement, indexFirstElement);
-
-    for (i = 0; i < TAMANHO; i++)
-    {
-        printf("Item %i do vetor: %.2f\n", i+1, vetor[i]);
-    }
+    printf("%i", maximoDivisorComum(numero1, numero2));
 
     return 0;
 }
 
-void inverteVetor(float *vetor, int indexLast, int indexFirst)
+int maximoDivisorComum(int numero1, int numero2)
 {
-    int temp = 0;
-
-    if (indexLast <= indexFirst) // base da recursao
+    if (numero2 == 0) // base da recursao
     {
-        return;
+        return numero1;
     }
     else
     {
-        temp = vetor[indexFirst];
-        vetor[indexFirst] = vetor[indexLast];
-        vetor[indexLast] = temp;
-        inverteVetor(vetor, indexLast-1, indexFirst+1);
+        return maximoDivisorComum(numero2, numero1 % numero2);
     }
-
-    return;
 }

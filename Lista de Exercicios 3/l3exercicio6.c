@@ -1,32 +1,35 @@
-// 6. Crie uma função recursiva que receba um número inteiro positivo N e calcule o somatório
-// dos números de 1 a N.
+// 6. Escreva uma função recursiva que determine quantas vezes um dígito K ocorre em um número natural N.
+// Por exemplo, o dígito 2 ocorre 3 vezes em 762021192.
 
 # include <stdio.h>
 
-int somaInteiros(int);
+long verificaRepeticao(int, long);
 
 int main(void)
 {
-    int numero = 4;
-    printf("%i", somaInteiros(numero));
+    int digito = 2;
+    long numero = 762021192;
 
+    printf("%i", verificaRepeticao(digito, numero));
+    
     return 0;
 }
 
-int somaInteiros(int numero)
+long verificaRepeticao(int digito, long numero)
 {
-    int soma = 0;
-
-    if (numero == 1)
+    if (numero == 0) // base repeticao
     {
-        soma = numero;
-        return soma;
+        return 0;
     }
     else
     {
-        soma += numero;
-        soma += somaInteiros(numero - 1);
+        if ((numero % 10) == digito)
+        {
+            return 1 + verificaRepeticao(digito, numero / 10);
+        }
+        else
+        {
+            return verificaRepeticao(digito, numero / 10);
+        }    
     }
-
-    return soma;
 }

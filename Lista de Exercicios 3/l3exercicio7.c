@@ -1,39 +1,28 @@
-// Escreva uma função recursiva que determine quantas vezes um dígito K ocorre em um número natural N.
-// Por exemplo, o dígito 2 ocorre 3 vezes em 762021192.
+// 7. A multiplicação de dois números inteiros pode ser feita através de somas sucessivas.
+// Proponha um algoritmo recursivo Multip_Rec(n1,n2) que calcule a multiplicação de dois inteiros.
 
 # include <stdio.h>
 
-int verificaRepeticao(int, int);
+int multiplicaRecursivo(int, int);
 
 int main(void)
 {
-    int digito = 2;
-    int numero = 76202112;
+    int numero1 = 3;
+    int numero2 = 15;
 
-    printf("%i", verificaRepeticao(digito, numero));
-    
+    printf("%i", multiplicaRecursivo(numero1, numero2));
+
     return 0;
 }
 
-int verificaRepeticao(int digito, int numero)
+int multiplicaRecursivo(int numero1, int numero2)
 {
-    int repeticao = 0;
-
-    if (numero == 0) // base repeticao
+    if (numero1 == 0) // base da recursao
     {
-        repeticao = 0;
-
-        return repeticao;
+        return 0;
     }
     else
     {
-        if ((numero % 10) == digito)
-        {
-            repeticao++;
-        }
-
-        repeticao += verificaRepeticao(digito, numero / 10);
+        return numero2 + multiplicaRecursivo(numero1 - 1, numero2);
     }
-
-    return repeticao;
 }

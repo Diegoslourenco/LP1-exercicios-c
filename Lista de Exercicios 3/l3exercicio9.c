@@ -1,33 +1,62 @@
-// 9. Faça uma função recursiva que receba um número inteiro positivo N e imprima todos os números
-// naturais de 0 até N em ordem crescente.
+// 9. Escreva uma função recursiva que dado um número n, gere todas as possíveis combinações com
+// as n primeiras letras do alfabeto. Ex.: n = 3. Resposta: ABC, ACB, BAC, BCA, CAB, CBA.
 
 # include <stdio.h>
+# include <string.h>
 
-void imprimeNumerosOrdem(int, int);
+void permutaLetras(char*, int);
+void trocaCaracter(char*, int, int);
 
 int main(void)
 {
-    int numero = 4;
-    int numeroAtual = 0;
+    int numero = 3;
+    int inicio = 0;
+    char letrasAlfabeto[26] = {"ABCDEFGHIJKLMNOPQRSTUWVXYZ"};
+    char letras[numero];
 
-    imprimeNumerosOrdem(numero, numeroAtual);
+    for (int i = 0; i < numero; i++)
+    {
+        letras[i] = letrasAlfabeto[i];
+    }
+
+    permutaLetras(letras, inicio);
 
     return 0;
 }
 
-void imprimeNumerosOrdem(int numero, int numeroAtual)
+void permutaLetras(char* letras, int numero)
 {
-    if (numeroAtual == numero) // base da recursao
+    int comprimentoLetras = strlen(letras);
+
+    if (numero == comprimentoLetras) // base da recursao
     {
-        printf("%i", numeroAtual);
+        printf("%s\n", letras);
         return;
     }
     else
     {
-        printf("%i", numeroAtual);
-        imprimeNumerosOrdem(numero, numeroAtual + 1);
+        for (int i = numero; i < comprimentoLetras; i++)
+        {
+            // troca os caracteres de lugar
+            trocaCaracter(letras, numero, i);
+
+            // chama a funcao
+            permutaLetras(letras, numero + 1);
+
+            // troca de volta
+            trocaCaracter(letras, i, numero);
+        }
+
+        return;
     }
+}
+
+void trocaCaracter(char* letras, int primeiro, int segundo)
+{
+    char temp;
+    temp = letras[primeiro];
+    letras[primeiro] = letras[segundo];
+    letras[segundo] = temp;
 
     return;
 }
-
