@@ -28,7 +28,7 @@ int geraCombinacoes(int* vetor, int inicio, int totalNumeros, int posicao, int n
 {
     int possibilidades = 0;
 
-    // se a posicao atual for maior que o numeros de um jogo, soma possibilidades
+    // se a posicao atual for maior que o numeros de um jogo, soma 1 possibilidade
     if (posicao > numerosUmJogo) // base da recursao
     {
         return 1;

@@ -11,7 +11,7 @@ int main(void)
 {
     int numero = 3;
     int inicio = 0;
-    char letrasAlfabeto[26] = {"ABCDEFGHIJKLMNOPQRSTUWVXYZ"};
+    char letrasAlfabeto[26] = { "ABCDEFGHIJKLMNOPQRSTUWVXYZ" };
     char letras[numero];
 
     for (int i = 0; i < numero; i++)
@@ -43,7 +43,7 @@ void permutaLetras(char* letras, int numero)
             // chama a funcao
             permutaLetras(letras, numero + 1);
 
-            // troca de volta
+            // troca de volta pra nao repetir
             trocaCaracter(letras, i, numero);
         }
 
@@ -53,7 +53,7 @@ void permutaLetras(char* letras, int numero)
 
 void trocaCaracter(char* letras, int primeiro, int segundo)
 {
-    char temp;
+    char temp; // auxiliar temporaria para realizar a troca
     temp = letras[primeiro];
     letras[primeiro] = letras[segundo];
     letras[segundo] = temp;
