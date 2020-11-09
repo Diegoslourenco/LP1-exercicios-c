@@ -11,12 +11,14 @@ Exibir os valores ordenados na tela.
 # define TAMANHO 3
 
 int ordenaValores(int*, int*, int*);
+void trocaPosicao(int*, int*);
 
 int main(void)
 {
     int numero1;
     int numero2;
     int numero3;
+    int ordenaRetorno;
 
     printf("Digite o valor 1: ");
     scanf("%i", &numero1);
@@ -25,9 +27,19 @@ int main(void)
     printf("Digite o valor 3: ");
     scanf("%i", &numero3);
 
-    ordenaValores(&numero1, &numero2, &numero3);
-    printf("\nValor 1: %i\nValor 2: %i\nValor 3: %i", numero1, numero2, numero3);
+    ordenaRetorno = ordenaValores(&numero1, &numero2, &numero3);
 
+    if (ordenaRetorno == 0)
+    {
+        printf("A lista foi ordenada!");
+        printf("\nValor 1: %i\nValor 2: %i\nValor 3: %i", numero1, numero2, numero3);
+    }
+    else
+    {
+        printf("A lista contem valores iguais");
+        printf("\nValor 1: %i\nValor 2: %i\nValor 3: %i", numero1, numero2, numero3);
+    }
+    
     return 0;
 }
 
@@ -39,61 +51,50 @@ int ordenaValores(int* endereco1, int* endereco2, int* endereco3)
     {
         if (*endereco3 > *endereco2)
         {
-            aux = *endereco2;
-            *endereco2 = *endereco3;
-            *endereco3 = aux;
+            trocaPosicao(endereco2, endereco3);
         }    
     }
     else if (*endereco2 > *endereco1 && *endereco2 > *endereco3)
     {
         if (*endereco1 > *endereco3)
         {
-            aux = *endereco1;
-            *endereco1 = *endereco2;
-            *endereco2 = aux;
+            trocaPosicao(endereco1, endereco2);
         }
         else
         {
-            //troca 1 com 2
-            aux = *endereco1;
-            *endereco1 = *endereco2;
-            *endereco2 = aux;
-
-            //troca 2 com 3
-            aux = *endereco2;
-            *endereco2 = *endereco3;
-            *endereco3 = aux;
+            trocaPosicao(endereco1, endereco2);
+            trocaPosicao(endereco2, endereco3);
         }
     }
     else
     {
         if (*endereco1 > *endereco2)
         {
-            //troca 1 e 3
-            aux = *endereco1;
-            *endereco1 = *endereco3;
-            *endereco3 = aux;
-
-            //troca 2 e 3
-            aux = *endereco2;
-            *endereco2 = *endereco3;
-            *endereco3 = aux;
+            trocaPosicao(endereco2, endereco3);
+            trocaPosicao(endereco1, endereco2);
         }
         else
         {
-            //troca 1 e 3
-            aux = *endereco1;
-            *endereco1 = *endereco3;
-            *endereco3 = aux;
+            trocaPosicao(endereco1, endereco3);
         }       
     }
 
     if (*endereco1 == *endereco2 && *endereco1 == *endereco3)
     {
-        return 0;
+        return 1;
     }
     else
     {
-        return 1;
+        return 0;
     }  
+}
+
+void trocaPosicao(int *numero1, int *numero2)
+{
+    int aux;
+    aux = *numero1;
+    *numero1 = *numero2;
+    *numero2 = aux;
+
+    return;
 }
