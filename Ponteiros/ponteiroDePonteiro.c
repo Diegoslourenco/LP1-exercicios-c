@@ -22,7 +22,7 @@ int main()
     printf("\nConteudo do endereco que ponteiro2: %i", *ponteiro2);
     printf("\nConteudo do conteudo do endereoco de ponteiro2: %i", **ponteiro2);
 
-    printf("\n%i", ***ponteiro3);
+    printf("\n%i", ponteiro3);
 
     return 0;
 }
