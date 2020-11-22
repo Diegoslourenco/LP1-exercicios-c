@@ -26,7 +26,7 @@ A função retorna:
 ou NULL, caso essa relação de números não tenha sido criada;
 - A quantidade de números carregados na área alocada dinamicamente, através do parâmetro qtd.
 
- Em seguida, crie a função principal do programa para inicializar um vetor de inteiros, exibir
+Em seguida, crie a função principal do programa para inicializar um vetor de inteiros, exibir
 esses valores na tela e pedir para o usuário digitar o valor mínimo e máximo a ser buscado.
 Em seguida o programa deverá chamar a função valores_entre e exibir na tela os valores resultantes.
 Lembre-se de exibir uma mensagem de erro caso nenhum valor seja  encontrado. Não se esqueça de liberar
