@@ -46,8 +46,7 @@ int main(void)
     int minimo = 0;
     int maximo = 0;
     int* vetorSaida = 0;
-    int tamanho = TAMANHO;
-    int* quantidade = &tamanho;
+    int quantidade;
 
     printf("Os valores dentro do vetor sao: ");
     
@@ -61,17 +60,17 @@ int main(void)
     printf("Digite o valor maximo a ser buscado: ");
     scanf("%i", &maximo);
 
-    vetorSaida = selecionaIntermediarios(vetorEntrada, TAMANHO, minimo, maximo, quantidade);
+    vetorSaida = selecionaIntermediarios(vetorEntrada, TAMANHO, minimo, maximo, &quantidade);
 
     if (vetorSaida == NULL)
     {
-        printf("Erro!\nNao foi encontrado nenhum valor com os criterio passados.");
+        printf("Erro!\nNao foi encontrado nenhum valor com os criterios passados.");
     }
     else
     {      
         printf("Os valores encontrados sao:\n");
         
-        for (i = 0; i < *quantidade; i++)
+        for (i = 0; i < quantidade; i++)
         {
             printf("%i", vetorSaida[i]);
         }
@@ -86,27 +85,21 @@ int* selecionaIntermediarios(int* vetor, int tamanho, int minimo, int maximo, in
 {
     int i = 0;
     int j = 0;
-    int contador = 0;
     int* vetorSaida;
+    *quantidade = 0;
 
     // Verificando quantidade de elementos
-    while (i < tamanho)
+    for (i = 0; i < tamanho; i++)
     {
         if ((vetor[i] >= minimo) && (vetor[i] <= maximo))
         {
-            contador += 1;
-            i += 1;
-        }
-        else
-        {
-            i += 1;
+            *quantidade += 1;
         }
     }
 
-    if (contador > 0)
+    if (*quantidade > 0)
     {
-        *quantidade = contador;
-        vetorSaida = (int*)malloc(contador * sizeof(int));
+        vetorSaida = (int*)malloc(*quantidade * sizeof(int));
 
         for (i = 0; i < tamanho; i++)
         {

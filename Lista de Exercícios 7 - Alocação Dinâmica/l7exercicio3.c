@@ -22,112 +22,182 @@ int main(void)
     int vetor1[TAMANHO1] = { 1, 3, 5, 6, 7 };
     int vetor2[TAMANHO2] = { 1, 3, 4, 6, 8 };
     int* vetor3 = 0;
+    int quantidade;
 
-    vetor3 = uneVetores(vetor1, vetor2, TAMANHO1, TAMANHO2, vetor3);
+    vetor3 = uneVetores(vetor1, vetor2, TAMANHO1, TAMANHO2, &quantidade);
+
+    for (int i = 0; i < quantidade; i++)
+    {
+        printf("\n%i", vetor3[i]);
+    }
 
     free(vetor3);
 
     return 0;
 }
 
-int* uneVetores(int* vetor1, int* vetor2, int tamanhoVetor1, int tamanhoVetor2, int* vetorQuantidade)
+int* uneVetores(int* vetor1, int* vetor2, int tamanhoVetor1, int tamanhoVetor2, int* quantidade)
 {  
     int i = 0;
     int j = 0;
     int z = 0;
-    int contador = 0;
+    int ultimoValor = 0;
+    int* vetorRetorno;
+    *quantidade = 0;
 
     while ((i < tamanhoVetor1) && (j < tamanhoVetor2))
     {
         if ((i == tamanhoVetor1 - 1) && (j == tamanhoVetor2 - 1))
         {
-            if (vetor1[i] == vetor2[j])
+            if (vetor1[i] == vetor2[j] && vetor1[i] != ultimoValor)
             {
-                contador += 1;
+                *quantidade += 1;
+                i += 1;
+                j += 1;
+            }
+            else if (vetor1[i] != ultimoValor && vetor2[j] != ultimoValor)
+            {
+                *quantidade += 2;
+                i += 1;
+                j += 1;
+            }
+            else if (vetor1[i] != ultimoValor || vetor2[j] != ultimoValor)
+            {
+                *quantidade += 1;
                 i += 1;
                 j += 1;
             }
             else
             {
-                contador += 2;
                 i += 1;
                 j += 1;
-            }
+            }     
         }
         else if (vetor1[i] == vetor2[j])
         {
-            contador += 1;
-            i += 1;
-            j += 1;
+            if (vetor1[i] != ultimoValor)
+            {
+                ultimoValor = vetor1[i];
+                *quantidade += 1;
+                i += 1;
+                j += 1;
+            }
+            else
+            {
+                i += 1;
+                j += 1;    
+            }        
         }
         else if (vetor1[i] < vetor2[j])
         {
-            contador += 1;
-            i += 1;
+            if (vetor1[i] != ultimoValor)
+            { 
+                ultimoValor = vetor1[i];
+                *quantidade += 1;
+                i += 1;
+            }
+            else
+            {
+                i += 1;
+            }   
         }
-        else if (vetor1[i] > vetor2[j])
+        else if (vetor1[i] > vetor2[j] && vetor2[j])
         {
-            contador += 1;
-            j += 1;
+            if (vetor2[j] != ultimoValor)
+            {
+                ultimoValor = vetor2[j];
+                *quantidade += 1;
+                j += 1;
+            }
+            else
+            {
+                j += 1;
+            } 
         }
     }
 
-    vetorQuantidade = (int*)malloc(contador * sizeof(int));
+    vetorRetorno = (int*)malloc(*quantidade * sizeof(int));
 
-    i = 0, j = 0;
+    i = 0;
+    j = 0;
+    ultimoValor = 0;
 
     while ((i < tamanhoVetor1) && (j < tamanhoVetor2))
     {
         if ((i == tamanhoVetor1 - 1) && (j == tamanhoVetor2 - 1))
         {
-            if (vetor1[i] == vetor2[j])
+            if (vetor1[i] == vetor2[j] && vetor1[i] != ultimoValor)
             {
-                vetorQuantidade[z] = vetor1[i];
+                vetorRetorno[z] = vetor1[i];
                 i += 1;
                 j += 1;
             }
-            else if (vetor1[i] < vetor2[j])
+            else if (vetor1[i] != ultimoValor && vetor2[j] != ultimoValor)
             {
-                vetorQuantidade[z] = vetor1[i];
+                vetorRetorno[z] = vetor1[i];
                 z += 1;
-                vetorQuantidade[z] = vetor2[j];
+                vetorRetorno[z] = vetor2[j];
                 i += 1;
-                j += 1;               
+                j += 1;
+            }
+            else if (vetor1[i] != ultimoValor)
+            {
+                vetorRetorno[z] = vetor1[i];
+                i += 1;
+                j += 1;
             }
             else
             {
-                vetorQuantidade[z] = vetor2[j];
-                z += 1;
-                vetorQuantidade[z] = vetor1[i];
+                vetorRetorno[z] = vetor2[j];
                 i += 1;
-                j += 1;   
-            }               
+                j += 1;
+            }             
         }
         else if (vetor1[i] == vetor2[j])
         {
-            vetorQuantidade[z] = vetor1[i];
-            i += 1;
-            j += 1;
-            z += 1;
+            if (vetor1[i] != ultimoValor)
+            {
+                vetorRetorno[z] = vetor1[i];
+                ultimoValor = vetorRetorno[z];
+                i += 1;
+                j += 1;
+                z += 1;
+            }
+            else
+            {
+                i += 1;
+                j += 1;
+            }           
         }
         else if (vetor1[i] < vetor2[j])
         {
-            vetorQuantidade[z] = vetor1[i];
-            i += 1;
-            z += 1;
+            if (vetor1[i] != ultimoValor)
+            {
+                vetorRetorno[z] = vetor1[i];
+                ultimoValor = vetorRetorno[z];
+                i += 1;
+                z += 1;
+            }
+            else
+            {
+                i += 1;
+            }             
         }
         else if (vetor1[i] > vetor2[j])
         {
-            vetorQuantidade[z] = vetor2[j];
-            j += 1;
-            z += 1;
+            if (vetor2[j] != ultimoValor)
+            {
+                vetorRetorno[z] = vetor2[j];
+                ultimoValor = vetorRetorno[z];
+                j += 1;
+                z += 1;
+            }
+            else
+            {
+                j += 1;
+            }        
         }  
     }
 
-    for (i = 0; i < contador; i++)
-    {
-        printf("\n%i", vetorQuantidade[i]);
-    }
-
-    return vetorQuantidade;
+    return vetorRetorno;
 }
